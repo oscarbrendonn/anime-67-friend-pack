@@ -1,5 +1,9 @@
 # Anime 67 Character 4K Pack
 
+Open the browser viewer:
+
+https://oscarbrendonn.github.io/anime-67-friend-pack/
+
 This folder contains four GLB character variants:
 
 - `KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb` - selected earlier variant, with flat black back and cleaned neck/face-side stain.

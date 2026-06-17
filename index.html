@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anime 67 Character Pack</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c0d;
+        --panel: #17191c;
+        --panel-2: #202328;
+        --text: #f4f6f8;
+        --muted: #a7b0bb;
+        --line: #323842;
+        --accent: #e8f05f;
+        --accent-text: #161704;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(260px, 360px) 1fr;
+      }
+
+      aside {
+        border-right: 1px solid var(--line);
+        background: var(--panel);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      .models {
+        display: grid;
+        gap: 10px;
+      }
+
+      button,
+      a.download {
+        min-height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel-2);
+        color: var(--text);
+        font: inherit;
+        text-align: left;
+        padding: 10px 12px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      button {
+        display: grid;
+        gap: 3px;
+      }
+
+      button span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      button.active {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--accent-text);
+      }
+
+      button.active span {
+        color: #4f520d;
+      }
+
+      a.download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .viewer {
+        min-width: 0;
+        min-height: 100vh;
+        position: relative;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          #101214;
+        background-size: 44px 44px;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100vh;
+        --poster-color: transparent;
+      }
+
+      .status {
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .status span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(23, 25, 28, 0.86);
+        color: var(--muted);
+        padding: 8px 12px;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+      }
+
+      @media (max-width: 760px) {
+        main {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+
+        aside {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 16px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        .models {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        button,
+        a.download {
+          min-height: 42px;
+          padding: 9px 10px;
+        }
+
+        .viewer {
+          min-height: calc(100vh - 260px);
+        }
+
+        model-viewer {
+          height: calc(100vh - 260px);
+          min-height: 420px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div>
+          <h1>Anime 67 Character Pack</h1>
+          <p>Modeli sec, mouse ile dondur, scroll ile yakinlas.</p>
+        </div>
+
+        <div class="models" aria-label="Model secimi">
+          <button class="active" type="button" data-src="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb">
+            Secilen temiz model
+            <span>Back flat + neck clean</span>
+          </button>
+          <button type="button" data-src="KARAKTER_4K_v7.glb">
+            Versiyon 7
+            <span>Full 4K output</span>
+          </button>
+          <button type="button" data-src="KARAKTER_4K_v8.glb">
+            Versiyon 8
+            <span>Full 4K output</span>
+          </button>
+          <button type="button" data-src="KARAKTER_4K_v9.glb">
+            Versiyon 9
+            <span>Full 4K output</span>
+          </button>
+        </div>
+
+        <a class="download" id="download" href="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb" download>
+          GLB indir
+        </a>
+      </aside>
+
+      <section class="viewer" aria-label="3D model goruntuleyici">
+        <model-viewer
+          id="viewer"
+          src="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb"
+          camera-controls
+          auto-rotate
+          shadow-intensity="0.8"
+          exposure="1"
+          environment-image="neutral"
+          interaction-prompt="auto"
+          camera-orbit="0deg 75deg 3.2m"
+          min-camera-orbit="auto auto 1.4m"
+          max-camera-orbit="auto auto 8m">
+        </model-viewer>
+        <div class="status">
+          <span id="status">Yukleniyor...</span>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const viewer = document.querySelector("#viewer");
+      const statusEl = document.querySelector("#status");
+      const download = document.querySelector("#download");
+      const buttons = [...document.querySelectorAll("button[data-src]")];
+
+      function setModel(button) {
+        buttons.forEach((item) => item.classList.toggle("active", item === button));
+        const src = button.dataset.src;
+        viewer.src = src;
+        download.href = src;
+        statusEl.textContent = "Yukleniyor...";
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => setModel(button));
+      });
+
+      viewer.addEventListener("load", () => {
+        statusEl.textContent = "Hazir: modeli cevirebilir ve yakinlasabilirsin.";
+      });
+
+      viewer.addEventListener("error", () => {
+        statusEl.textContent = "Model yuklenemedi. Sayfayi yenile veya dosyayi indir.";
+      });
+    </script>
+  </body>
+</html>
