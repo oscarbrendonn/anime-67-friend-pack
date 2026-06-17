@@ -30,86 +30,62 @@
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
-      main {
+      .page {
         min-height: 100vh;
         display: grid;
-        grid-template-columns: minmax(260px, 360px) 1fr;
+        grid-template-rows: auto 1fr;
       }
 
-      aside {
-        border-right: 1px solid var(--line);
-        background: var(--panel);
-        padding: 24px;
+      .topbar {
+        border-bottom: 1px solid var(--line);
+        background: rgba(23, 25, 28, 0.96);
+        padding: 16px 20px;
         display: flex;
-        flex-direction: column;
-        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .title {
+        min-width: 0;
       }
 
       h1 {
         margin: 0;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 1.1;
         letter-spacing: 0;
       }
 
       p {
-        margin: 0;
+        margin: 5px 0 0;
         color: var(--muted);
-        line-height: 1.5;
+        line-height: 1.45;
         font-size: 14px;
       }
 
-      .models {
-        display: grid;
-        gap: 10px;
-      }
-
-      button,
-      a.download {
-        min-height: 44px;
+      .repo-link {
+        flex: 0 0 auto;
+        min-height: 40px;
         border: 1px solid var(--line);
         border-radius: 8px;
         background: var(--panel-2);
         color: var(--text);
-        font: inherit;
-        text-align: left;
-        padding: 10px 12px;
-        cursor: pointer;
-        text-decoration: none;
-      }
-
-      button {
-        display: grid;
-        gap: 3px;
-      }
-
-      button span {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      button.active {
-        border-color: var(--accent);
-        background: var(--accent);
-        color: var(--accent-text);
-      }
-
-      button.active span {
-        color: #4f520d;
-      }
-
-      a.download {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
+        padding: 9px 12px;
+        text-decoration: none;
+        font-size: 14px;
         font-weight: 700;
       }
 
-      .viewer {
+      .comparison-grid {
         min-width: 0;
-        min-height: 100vh;
-        position: relative;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(240px, 1fr));
+        gap: 14px;
         background:
           linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
           linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
@@ -117,145 +93,263 @@
         background-size: 44px 44px;
       }
 
+      .model-panel {
+        min-width: 0;
+        min-height: calc(100vh - 126px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(23, 25, 28, 0.9);
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto minmax(430px, 1fr) auto;
+      }
+
+      .model-head {
+        min-height: 68px;
+        border-bottom: 1px solid var(--line);
+        padding: 12px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .model-name {
+        display: grid;
+        gap: 3px;
+        min-width: 0;
+      }
+
+      .model-name strong {
+        font-size: 15px;
+        line-height: 1.2;
+      }
+
+      .model-name span {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--accent-text);
+        padding: 5px 8px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
       model-viewer {
         width: 100%;
-        height: 100vh;
+        height: 100%;
+        min-height: 430px;
+        background: #101214;
         --poster-color: transparent;
       }
 
-      .status {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        right: 20px;
+      .model-foot {
+        min-height: 48px;
+        border-top: 1px solid var(--line);
         display: flex;
-        justify-content: center;
-        pointer-events: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 12px;
       }
 
-      .status span {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(23, 25, 28, 0.86);
+      .status {
+        min-width: 0;
         color: var(--muted);
-        padding: 8px 12px;
-        font-size: 13px;
-        backdrop-filter: blur(10px);
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      @media (max-width: 760px) {
-        main {
-          grid-template-columns: 1fr;
-          grid-template-rows: auto 1fr;
+      .download {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel-2);
+        color: var(--text);
+        padding: 7px 10px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 1180px) {
+        .comparison-grid {
+          grid-template-columns: repeat(2, minmax(260px, 1fr));
         }
 
-        aside {
-          border-right: 0;
-          border-bottom: 1px solid var(--line);
-          padding: 16px;
+        .model-panel {
+          min-height: 620px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px;
         }
 
         h1 {
           font-size: 20px;
         }
 
-        .models {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        .repo-link {
+          width: 100%;
         }
 
-        button,
-        a.download {
-          min-height: 42px;
-          padding: 9px 10px;
+        .comparison-grid {
+          grid-template-columns: 1fr;
+          padding: 12px;
         }
 
-        .viewer {
-          min-height: calc(100vh - 260px);
+        .model-panel {
+          min-height: 560px;
+          grid-template-rows: auto minmax(390px, 1fr) auto;
         }
 
         model-viewer {
-          height: calc(100vh - 260px);
-          min-height: 420px;
+          min-height: 390px;
         }
       }
     </style>
   </head>
   <body>
-    <main>
-      <aside>
-        <div>
+    <main class="page">
+      <header class="topbar">
+        <div class="title">
           <h1>Anime 67 Character Pack</h1>
-          <p>Modeli sec, mouse ile dondur, scroll ile yakinlas.</p>
+          <p>Dort model yan yana. Her pencerede ayri ayri dondur, zoom yap, kiyasla.</p>
         </div>
+        <a class="repo-link" href="https://github.com/oscarbrendonn/anime-67-friend-pack">GitHub</a>
+      </header>
 
-        <div class="models" aria-label="Model secimi">
-          <button class="active" type="button" data-src="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb">
-            Secilen temiz model
-            <span>Back flat + neck clean</span>
-          </button>
-          <button type="button" data-src="KARAKTER_4K_v7.glb">
-            Versiyon 7
-            <span>Full 4K output</span>
-          </button>
-          <button type="button" data-src="KARAKTER_4K_v8.glb">
-            Versiyon 8
-            <span>Full 4K output</span>
-          </button>
-          <button type="button" data-src="KARAKTER_4K_v9.glb">
-            Versiyon 9
-            <span>Full 4K output</span>
-          </button>
-        </div>
+      <section class="comparison-grid" aria-label="Yan yana 3D model karsilastirma">
+        <article class="model-panel">
+          <div class="model-head">
+            <div class="model-name">
+              <strong>Secilen temiz model</strong>
+              <span>Back flat + neck clean</span>
+            </div>
+            <span class="badge">BEST</span>
+          </div>
+          <model-viewer
+            src="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            shadow-intensity="0.8"
+            exposure="1"
+            environment-image="neutral"
+            interaction-prompt="auto"
+            camera-orbit="0deg 75deg 3.2m"
+            min-camera-orbit="auto auto 1.4m"
+            max-camera-orbit="auto auto 8m">
+          </model-viewer>
+          <div class="model-foot">
+            <span class="status">Yukleniyor...</span>
+            <a class="download" href="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb" download>GLB indir</a>
+          </div>
+        </article>
 
-        <a class="download" id="download" href="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb" download>
-          GLB indir
-        </a>
-      </aside>
+        <article class="model-panel">
+          <div class="model-head">
+            <div class="model-name">
+              <strong>Versiyon 7</strong>
+              <span>Full 4K output</span>
+            </div>
+          </div>
+          <model-viewer
+            src="KARAKTER_4K_v7.glb"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            shadow-intensity="0.8"
+            exposure="1"
+            environment-image="neutral"
+            interaction-prompt="auto"
+            camera-orbit="0deg 75deg 3.2m"
+            min-camera-orbit="auto auto 1.4m"
+            max-camera-orbit="auto auto 8m">
+          </model-viewer>
+          <div class="model-foot">
+            <span class="status">Yukleniyor...</span>
+            <a class="download" href="KARAKTER_4K_v7.glb" download>GLB indir</a>
+          </div>
+        </article>
 
-      <section class="viewer" aria-label="3D model goruntuleyici">
-        <model-viewer
-          id="viewer"
-          src="KARAKTER_4K_v1_BACK_FLAT_NECK_CLEAN.glb"
-          camera-controls
-          auto-rotate
-          shadow-intensity="0.8"
-          exposure="1"
-          environment-image="neutral"
-          interaction-prompt="auto"
-          camera-orbit="0deg 75deg 3.2m"
-          min-camera-orbit="auto auto 1.4m"
-          max-camera-orbit="auto auto 8m">
-        </model-viewer>
-        <div class="status">
-          <span id="status">Yukleniyor...</span>
-        </div>
+        <article class="model-panel">
+          <div class="model-head">
+            <div class="model-name">
+              <strong>Versiyon 8</strong>
+              <span>Full 4K output</span>
+            </div>
+          </div>
+          <model-viewer
+            src="KARAKTER_4K_v8.glb"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            shadow-intensity="0.8"
+            exposure="1"
+            environment-image="neutral"
+            interaction-prompt="auto"
+            camera-orbit="0deg 75deg 3.2m"
+            min-camera-orbit="auto auto 1.4m"
+            max-camera-orbit="auto auto 8m">
+          </model-viewer>
+          <div class="model-foot">
+            <span class="status">Yukleniyor...</span>
+            <a class="download" href="KARAKTER_4K_v8.glb" download>GLB indir</a>
+          </div>
+        </article>
+
+        <article class="model-panel">
+          <div class="model-head">
+            <div class="model-name">
+              <strong>Versiyon 9</strong>
+              <span>Full 4K output</span>
+            </div>
+          </div>
+          <model-viewer
+            src="KARAKTER_4K_v9.glb"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            shadow-intensity="0.8"
+            exposure="1"
+            environment-image="neutral"
+            interaction-prompt="auto"
+            camera-orbit="0deg 75deg 3.2m"
+            min-camera-orbit="auto auto 1.4m"
+            max-camera-orbit="auto auto 8m">
+          </model-viewer>
+          <div class="model-foot">
+            <span class="status">Yukleniyor...</span>
+            <a class="download" href="KARAKTER_4K_v9.glb" download>GLB indir</a>
+          </div>
+        </article>
       </section>
     </main>
 
     <script>
-      const viewer = document.querySelector("#viewer");
-      const statusEl = document.querySelector("#status");
-      const download = document.querySelector("#download");
-      const buttons = [...document.querySelectorAll("button[data-src]")];
+      document.querySelectorAll("model-viewer").forEach((viewer) => {
+        const status = viewer.closest(".model-panel").querySelector(".status");
 
-      function setModel(button) {
-        buttons.forEach((item) => item.classList.toggle("active", item === button));
-        const src = button.dataset.src;
-        viewer.src = src;
-        download.href = src;
-        statusEl.textContent = "Yukleniyor...";
-      }
+        viewer.addEventListener("load", () => {
+          status.textContent = "Hazir: dondur ve yakinlas.";
+        });
 
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => setModel(button));
-      });
-
-      viewer.addEventListener("load", () => {
-        statusEl.textContent = "Hazir: modeli cevirebilir ve yakinlasabilirsin.";
-      });
-
-      viewer.addEventListener("error", () => {
-        statusEl.textContent = "Model yuklenemedi. Sayfayi yenile veya dosyayi indir.";
+        viewer.addEventListener("error", () => {
+          status.textContent = "Yuklenemedi. GLB indirip kontrol et.";
+        });
       });
     </script>
   </body>
